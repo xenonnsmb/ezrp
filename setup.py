@@ -9,9 +9,9 @@ if (sys.platform == 'darwin'):
 	)
 elif (sys.platform == 'win32'):
 	from cx_Freeze import setup, Executable
+	
 	extra_options = dict(
 		setup_requires=["cx_Freeze"],
-		options = {"build_exe": build_exe_options},
 		executables = [Executable(main, base="Win32GUI")]
 	)
 else:
