@@ -14,7 +14,7 @@ class Frame(wx.Frame):
     	self.customState = "None"
     	self.customDetails = "None"
     	
-    	self.startbutton = wx.Button(self.panel, 1, "Please wait...", wx.Point(10, 180))
+    	self.startbutton = wx.Button(self.panel, 1, "Please wait...", wx.Point(10, 160))
     	self.startbutton.Bind(wx.EVT_BUTTON, self.toggleRunning)
     	
     	self.cfgbutton = wx.Button(self.panel, 1, "Configure", wx.Point(250, 10))
