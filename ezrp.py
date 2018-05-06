@@ -1,6 +1,7 @@
 import wx
 import time
 import rpc
+import sys
 
 class Frame(wx.Frame):
     def __init__(self):
@@ -26,7 +27,7 @@ class Frame(wx.Frame):
     	else:
     		self.dialog.Destroy()
     		self.quit(None)
-    		exit(0)
+    		sys.exit(0)
     	self.dialog.Destroy()
     	self.sourceLabel = wx.StaticText(self.panel, label="Data source:", pos=(10, 10))
     	
