@@ -18,7 +18,9 @@ class Frame(wx.Frame):
     	if (self.dialog.ShowModal() == wx.ID_OK):
     		clientid = self.dialog.GetValue()
     	else:
+    		self.dialog.Destroy()
     		self.Destroy()
+    	self.dialog.Destroy()
     	self.sourceLabel = wx.StaticText(self.panel, label="Data source:", pos=(10, 10))
     	
     	self.sourceChoice = wx.Choice(self.panel, wx.ID_ANY, pos=(95, 10), choices=["Default Example", "Custom"])
