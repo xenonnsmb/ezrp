@@ -12,7 +12,7 @@ elif (sys.platform == 'win32'):
 	extra_options = dict(
 		setup_requires=["cx_Freeze"],
 		options = {"build_exe": build_exe_options},
-		executables = [Executable(main, base="Win32GUI")])
+		executables = [Executable(main, base="Win32GUI")]
 	)
 else:
 	extra_options = dict(
