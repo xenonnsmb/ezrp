@@ -13,6 +13,12 @@ class Frame(wx.Frame):
     	self.startbutton = wx.Button(self.panel, wx.ID_ANY, "Please wait...", wx.Point(10, 180))
     	self.startbutton.Bind(wx.EVT_BUTTON, self.toggleRunning)
     	
+    	self.dialog = wx.TextEntryDialog(self.panel, "Type in your Discord app's client ID.", "Client ID Prompt")
+    	self.dialog.SetValue("442729945144229889")
+    	if (self.dialog.ShowModal() == wx.ID_OK):
+    		clientid = self.dialog.GetValue()
+    	else:
+    		self.Destroy()
     	self.sourceLabel = wx.StaticText(self.panel, label="Data source:", pos=(10, 10))
     	
     	self.sourceChoice = wx.Choice(self.panel, wx.ID_ANY, pos=(95, 10), choices=["Default Example", "Custom"])
@@ -31,7 +37,7 @@ class Frame(wx.Frame):
     	global updatingRp
     	updatingRp = False
     	
-    	self.rpc_obj = rpc.DiscordIpcClient.for_platform("442729945144229889")
+    	self.rpc_obj = rpc.DiscordIpcClient.for_platform(clientid)
     def quit(self, event):
     	self.Destroy()
     def updateRp(self, event):
