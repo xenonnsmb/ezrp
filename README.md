@@ -7,7 +7,7 @@ Download the latest compiled version for your platform from the Releases tab.
 Run Run.bat (Windows), Run.command (Mac), or Run.sh (Linux). You will need Python 3 and wxpython installed; if you don't have wxpython, get it with ``pip3 install wxpython``.
 ### Build it yourself
 - Get the dependencies: ``pip3 install -r dependencies.txt``
-- On Windows, run ``python3 setup.py py2exe``
+- On Windows, run ``python3 setup.py build``
 - On Mac, run ``python3 setup.py py2app``
 ## How to use
 When ezrp starts, you will be prompted for a client ID; this determines what game name will be shown in Discord. The default client ID will work, but it will make Discord say you are playing "ezrp". If you want to customize this, create your own application at https://discordapp.com/developers/applications/me, give it the name you want, and copy the client ID. Once you've chosen a client ID, the main window will open. Use the dropdown to choose a data source, and click "Start" to begin using your rich presence. Click "Configure" to set options for the current data source.
