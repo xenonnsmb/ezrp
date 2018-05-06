@@ -19,7 +19,8 @@ class Frame(wx.Frame):
     		clientid = self.dialog.GetValue()
     	else:
     		self.dialog.Destroy()
-    		self.Destroy()
+    		self.quit(None)
+    		exit(0)
     	self.dialog.Destroy()
     	self.sourceLabel = wx.StaticText(self.panel, label="Data source:", pos=(10, 10))
     	
