@@ -12,7 +12,7 @@ elif (sys.platform == 'win32'):
 	
 	extra_options = dict(
 		setup_requires=["cx_Freeze"],
-		executables = [Executable(main, base="Win32GUI")]
+		executables = [Executable(main, base="Win32GUI", shortcutName="ezrp", shortcutDir="ProgramMenuFolder")]
 	)
 else:
 	extra_options = dict(
