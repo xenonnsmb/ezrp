@@ -20,7 +20,7 @@ else:
 	)
 setup(
 	name = "ezrp",
-	version = "1.0.0-alpha2",
+	version = "1.0.0a2",
     app=[main],
 	**extra_options
 )
