@@ -31,7 +31,7 @@ class Frame(wx.Frame):
     	global updatingRp
     	updatingRp = False
     	
-    	self.rpc_obj = rpc.DiscordIpcClient.for_platform("422523932952756234")
+    	self.rpc_obj = rpc.DiscordIpcClient.for_platform("442729945144229889")
     def quit(self, event):
     	self.Destroy()
     def updateRp(self, event):
