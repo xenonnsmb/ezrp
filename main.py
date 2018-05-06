@@ -10,8 +10,14 @@ class Frame(wx.Frame):
     	self.statusbar.SetStatusText("Starting up...")
     	self.panel = wx.Panel(self)
     	
-    	self.startbutton = wx.Button(self.panel, wx.ID_ANY, "Please wait...", wx.Point(10, 180))
+    	self.customState = "None"
+    	self.customDetails = "None"
+    	
+    	self.startbutton = wx.Button(self.panel, 1, "Please wait...", wx.Point(10, 180))
     	self.startbutton.Bind(wx.EVT_BUTTON, self.toggleRunning)
+    	
+    	self.cfgbutton = wx.Button(self.panel, 1, "Configure", wx.Point(250, 10))
+    	self.cfgbutton.Bind(wx.EVT_BUTTON, self.configureSource)
     	
     	self.dialog = wx.TextEntryDialog(self.panel, "Type in your Discord app's client ID.", "Client ID Prompt")
     	self.dialog.SetValue("442729945144229889")
@@ -24,7 +30,9 @@ class Frame(wx.Frame):
     	self.dialog.Destroy()
     	self.sourceLabel = wx.StaticText(self.panel, label="Data source:", pos=(10, 10))
     	
-    	self.sourceChoice = wx.Choice(self.panel, wx.ID_ANY, pos=(95, 10), choices=["Default Example", "Custom"])
+    	self.sourceChoice = wx.Choice(self.panel, 1, pos=(95, 10), choices=["Default Example", "Custom"])
+    	
+    	
     	
     	self.timer = wx.Timer(self)
     	self.Bind(wx.EVT_TIMER, self.loop, self.timer)
@@ -49,6 +57,8 @@ class Frame(wx.Frame):
     	else:
     		if (self.currentSource == "Default Example"):
     			activity = self.defExample(self.startTime)
+    		if (self.currentSource == "Custom"):
+    			activity = self.customData(self.startTime)
     		self.rpc_obj.set_activity(activity)
     def loop(self, event):
     	global updatingRp
@@ -67,11 +77,27 @@ class Frame(wx.Frame):
     	global updatingRp
     	updatingRp = not updatingRp
     	self.startTime = time.time()
+    def configureSource(self, event):
+    	if (self.currentSource == "Default Example"):
+    		dialog = wx.MessageDialog(self.panel, "The example data source does not have any configuration options.", "Error")
+    		dialog.ShowModal()
+    	if (self.currentSource == "Custom"):
+    		dialog = wx.TextEntryDialog(self.panel, "Type in a custom state message.", "Custom Data Configuration")
+    		if (dialog.ShowModal() == wx.ID_OK):
+    			self.customState = dialog.GetValue()
+    		dialog = wx.TextEntryDialog(self.panel, "Type in a custom details message.", "Custom Data Configuration")
+    		if (dialog.ShowModal() == wx.ID_OK):
+    			self.customDetails = dialog.GetValue()
+    		
     def defExample(self, start_time):
     	activity = {"state": "Rich Presence Test!","details": "Powered by ezrp","timestamps": {"start": start_time}}
     	return activity
+    def customData(self, start_time):
+    	activity = {"state": self.customState,"details": self.customDetails,"timestamps": {"start": start_time}}
+    	return activity
 
-app = wx.App(False)
-frame = Frame()
-frame.Show()
-app.MainLoop()
+if (__name__ == "__main__"):
+	app = wx.App(False)
+	frame = Frame()
+	frame.Show()
+	app.MainLoop()
